@@ -1,0 +1,29 @@
+﻿<Window x:Class="PublishTools.AddManager"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PublishTools"
+        mc:Ignorable="d"
+        Title="TemplateManager" Height="432" Width="599" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,2,19">
+        <Label Content="模板名称" HorizontalAlignment="Left" Margin="65,17,0,0" VerticalAlignment="Top"/>
+        <Label Content="选择文件" HorizontalAlignment="Left" Margin="65,57,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtFile" HorizontalAlignment="Left" Height="42" IsEnabled="False" Margin="128,56,0,0" 
+                 TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="332"/>
+        <Button x:Name="btnOpenFile" Content="..." HorizontalAlignment="Left" Margin="480,56,0,0" VerticalAlignment="Top" Width="70" Height="24" Click="btnOpenFile_Click"/>
+        <Label Content="替换后的文件名" HorizontalAlignment="Left" Margin="29,103,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtResultFileName" HorizontalAlignment="Left" Height="23" Margin="128,107,0,0" TextWrapping="Wrap" 
+                 Text="" VerticalAlignment="Top" Width="332"/>
+        <Button Content="添加" HorizontalAlignment="Left" Margin="480,107,0,0" VerticalAlignment="Top" Width="70" Height="23" Click="Button_Click"/>
+        <DataGrid x:Name="txtGrid" IsEnabled="False" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="192" Margin="29,180,0,0" VerticalAlignment="Top" Width="521">
+            <DataGrid.Columns >
+                <DataGridTextColumn Header="文件名称" x:Name="file" Binding="{Binding FileName}"/>
+                <DataGridTextColumn Header="目标名称" x:Name="resultFile" Binding="{Binding ResultFileName}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Click="btnSave_Click" x:Name="btnSave" Content="保存" HorizontalAlignment="Left" Margin="480,17,0,0" VerticalAlignment="Top" Width="70" Height="25"/>
+        <TextBox x:Name="txtName"  HorizontalAlignment="Left" Height="23" Margin="128,17,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="332"/>
+        <Label x:Name="txtErr" Content=""  HorizontalAlignment="Left" Margin="65,140,0,0" VerticalAlignment="Top" Width="395" Background="White" Foreground="Red"/>
+    </Grid>
+</Window>

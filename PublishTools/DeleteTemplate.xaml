@@ -1,0 +1,26 @@
+﻿<Window x:Class="PublishTools.DeleteTemplate"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PublishTools"
+        mc:Ignorable="d"
+        Title="DeleteTemplate" Height="377" Width="594"
+        Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,2,9">
+        <DataGrid x:Name="txtGrid" IsEnabled="False" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="220" Margin="28,86,0,0" VerticalAlignment="Top" Width="535">
+            <DataGrid.Columns >
+                <DataGridTextColumn Header="文件名称" x:Name="file" Binding="{Binding FileName}"/>
+                <DataGridTextColumn Header="目标名称" x:Name="resultFile" Binding="{Binding ResultFileName}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="请选择配置模板" HorizontalAlignment="Left" Margin="28,29,0,0" VerticalAlignment="Top" Height="25"/>
+
+        <ComboBox Name="comTemplate" SelectionChanged="cobTemplate_SelectionChanged" HorizontalAlignment="Left" Margin="140,30,0,0" VerticalAlignment="Top" Width="333"/>
+
+        <Button x:Name="btnDel" Click="btnDel_Click" Content="删除" HorizontalAlignment="Left" Margin="488,29,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label x:Name="labelErr" HorizontalAlignment="Left" Margin="28,56,0,0" VerticalAlignment="Top" Width="445" Foreground="Red">
+        </Label>
+
+    </Grid>
+</Window>

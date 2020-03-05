@@ -1,0 +1,24 @@
+﻿{
+  "Start": {
+    "X": 0,
+    "Y": 0
+  },
+  "End": {
+    "X": 550,
+    "Y": 650
+  },
+
+  "ControlBox": {
+    "HasMaxBtn": false,
+    "HasMinBtn": false,
+    "HasCloseBtn": true
+  },
+  "VisualInfo": {
+    "IsFullScreen": false,
+    "IsTopLayer": false,
+    "IsCenter": true,
+    "ShowTitle": true
+  },
+  "Title": "新通在线直播助手",
+  "StartURI": "http://plat.igo1996.com/App/H5/LiveClient/#/login?appcode=E0DE63A8BAE14C7AB40099BF7A290977"
+}

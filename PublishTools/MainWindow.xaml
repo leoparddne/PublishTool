@@ -1,0 +1,31 @@
+﻿<Window x:Class="PublishTools.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PublishTools"
+        mc:Ignorable="d"
+        Title="Windows客户端发布工具" Height="522" Width="663.978" Loaded="Window_Loaded"
+        Closing="Window_Closing" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,2,4">
+        <Menu>
+            <MenuItem Header="添加模板" Name="addTemplate" Click="addTemplate_Click"></MenuItem>
+            <MenuItem Header="删除模板" Name="delTemplate" Click="delTemplate_Click"></MenuItem>
+        </Menu>
+        <Label Content="请选择配置模板" HorizontalAlignment="Left" Margin="30,38,0,0" VerticalAlignment="Top" Height="25"/>
+
+        <ComboBox Name="cobTemplate" HorizontalAlignment="Left" Margin="212,38,0,0" VerticalAlignment="Top" Width="328">
+            <Grid Height="100" Width="100"/>
+        </ComboBox>
+        <Label Content="请选择编译iss文件的cmd脚本" HorizontalAlignment="Left" Margin="13,103,0,0" VerticalAlignment="Top" Height="25"/>
+        <TextBox IsEnabled="False" x:Name="txtPack" HorizontalAlignment="Left" Height="52" Margin="212,103,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="326"/>
+        <Button x:Name="btnOpenFile" Content="..." HorizontalAlignment="Left" Margin="551,102,0,0" VerticalAlignment="Top" Width="63" Height="26" Click="btnOpenFile_Click"/>
+        <Button x:Name="btnPack" Content="打包" HorizontalAlignment="Left" Margin="551,31,0,0" VerticalAlignment="Top" Width="63" Click="btnPack_Click" Height="32"/>
+        <Label Content="代码Release资源文件路径" HorizontalAlignment="Left" Margin="30,71,0,0" VerticalAlignment="Top"/>
+
+        <TextBox x:Name="txtResource" HorizontalAlignment="Left" IsEnabled="False" Height="23" Margin="212,71,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="326"/>
+        <Button x:Name="btnResource" Content="..." HorizontalAlignment="Left" Margin="551,71,0,0" VerticalAlignment="Top" Width="63" Height="23" Click="btnResource_Click"/>
+        <TextBox x:Name="txtResult"  HorizontalAlignment="Left" Height="296" Margin="13,181,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="631"/>
+
+    </Grid>
+</Window>
