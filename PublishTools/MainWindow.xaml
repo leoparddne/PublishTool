@@ -17,7 +17,7 @@
         <ComboBox Name="cobTemplate" HorizontalAlignment="Left" Margin="212,38,0,0" VerticalAlignment="Top" Width="328">
             <Grid Height="100" Width="100"/>
         </ComboBox>
-        <Label Content="请选择编译iss文件的cmd脚本" HorizontalAlignment="Left" Margin="13,103,0,0" VerticalAlignment="Top" Height="25"/>
+        <Label Content="请选择后续需要执行的脚本" HorizontalAlignment="Left" Margin="13,103,0,0" VerticalAlignment="Top" Height="25"/>
         <TextBox IsEnabled="False" x:Name="txtPack" HorizontalAlignment="Left" Height="52" Margin="212,103,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="326"/>
         <Button x:Name="btnOpenFile" Content="..." HorizontalAlignment="Left" Margin="551,102,0,0" VerticalAlignment="Top" Width="63" Height="26" Click="btnOpenFile_Click"/>
         <Button x:Name="btnPack" Content="打包" HorizontalAlignment="Left" Margin="551,31,0,0" VerticalAlignment="Top" Width="63" Click="btnPack_Click" Height="32"/>
