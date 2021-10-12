@@ -1,4 +1,4 @@
-﻿using Microsoft.Win32;
+using Microsoft.Win32;
 using Newtonsoft.Json;
 using PublishTools.Ex;
 using PublishTools.Model;
@@ -108,7 +108,7 @@ namespace PublishTools
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             //替换操作在具体的配置页面完成
-            //SaveConfig();
+            SaveConfig();
         }
         private void addTemplate_Click(object sender, RoutedEventArgs e)
         {
