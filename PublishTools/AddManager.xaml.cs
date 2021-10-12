@@ -1,4 +1,4 @@
-﻿using PublishTools.Model;
+using PublishTools.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -72,11 +72,11 @@ namespace PublishTools
                 SetErr("请输入配置模板名称");
                 return;
             }
-            if (resultFiles.Count == 0)
-            {
-                SetErr("请添加配置");
-                return;
-            }
+            //if (resultFiles.Count == 0)
+            //{
+            //    SetErr("请添加配置");
+            //    return;
+            //}
 
             templateList.TryGetValue(txtName.Text.Trim(), out var data);
             if (data == null)
