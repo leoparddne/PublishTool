@@ -11,5 +11,10 @@ namespace PublishTools.Model
         public string FileName { get; set; }
 
         public string ResultFileName { get; set; }
+
+        /// <summary>
+        /// 是否为目录
+        /// </summary>
+        public bool ISDir { get;  set; }
     }
 }

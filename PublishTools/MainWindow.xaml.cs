@@ -34,6 +34,12 @@ namespace PublishTools
 
         Dictionary<string, List<Template>> templateList = new Dictionary<string, List<Template>>();
 
+        //发布结果
+        private int errorCount;
+        //发布错误信息
+        StringBuilder error = new StringBuilder();
+
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             //获取历史配置信息
@@ -65,6 +71,9 @@ namespace PublishTools
         }
         private void btnPack_Click(object sender, RoutedEventArgs e)
         {
+
+
+            errorCount = 0;
             if (cobTemplate.SelectedItem == null)
             {
                 return;
@@ -78,22 +87,115 @@ namespace PublishTools
                 {
                     if (file.EndsWith(".pdb"))
                     {
+                        if (!File.Exists(file))
+                        {
+                            CallErr($"{file}调试文件无法删除");
+                            continue;
+                        }
                         File.Delete(file);
                     }
                 }
             }
+
 
             //替换文件
             if (templateList.TryGetValue(cobTemplate.SelectedItem.ToString(), out var templates))
             {
                 foreach (var item in templates)
                 {
-                    var resultPath = System.IO.Path.Combine(txtResource.Text.Trim(), item.ResultFileName);
-                    File.Copy(item.FileName, resultPath, true);
-                    var cmd = new CMDEx(txtResult);
-                    cmd.RunCmd("", txtPack.Text.Trim());
+                    if (item.ISDir)
+                    {
+                        if (!Directory.Exists(item.FileName))
+                        {
+                            CallErr($"{item.FileName}目录不存在");
+                            continue;
+                        }
+                        var resultPath = System.IO.Path.Combine(txtResource.Text.Trim(), item.ResultFileName);
+                        if (!Directory.Exists(resultPath))
+                        {
+                            Directory.CreateDirectory(resultPath);
+                        }
+
+                        CopyDir(item.FileName, resultPath);
+                    }
+                    else
+                    {
+                        var resultPath = System.IO.Path.Combine(txtResource.Text.Trim(), item.ResultFileName);
+                        if (!File.Exists(item.FileName))
+                        {
+                            CallErr($"{item.FileName}文件不存在");
+                            continue;
+                        }
+                        File.Copy(item.FileName, resultPath, true);
+
+                    }
                 }
             }
+
+            if (errorCount > 0)
+            {
+                var errFile = $"{DateTime.Now.ToString("yyyyMMdd")}.packError.txt";
+                File.WriteAllText(errFile, error.ToString());
+                System.Windows.MessageBox.Show($"存在{errorCount}条错误信息,请确认,文件【{errFile}】");
+            }
+
+            var cmd = new CMDEx(txtResult);
+            cmd.RunCmd("", txtPack.Text.Trim());
+        }
+
+        private void CopyDir(string dir, string des)
+        {
+            if (!Directory.Exists(des))
+            {
+                Directory.CreateDirectory(des);
+            }
+            var dirs = Directory.GetDirectories(dir);
+            var files = Directory.GetFiles(dir);
+            if (files.Any())
+            {
+
+                foreach (var filePath in files)
+                {
+                    var fileInfo = new FileInfo(filePath);
+
+                    var resultFile = System.IO.Path.Combine(des, fileInfo.Name);
+                    File.Copy(filePath, resultFile, true);
+                }
+            }
+
+            if (!dirs.Any())
+            {
+                return;
+            }
+            foreach (var subDir in dirs)
+            {
+                var fileInfo = new FileInfo(subDir);
+                var resultDir = System.IO.Path.Combine(des, fileInfo.Name);
+
+                CopyDir(subDir, resultDir);
+            }
+        }
+
+        private void CallErr(string err)
+        {
+            errorCount++;
+            AddErr(err);
+
+            error.AppendLine(err);
+        }
+
+        private void AddErr(string err)
+        {
+            AddLog($"【Error】{err}");
+        }
+
+        private void AddLog(string log)
+        {
+            this.Dispatcher.Invoke(() =>
+            {
+                txtResult.AppendText($"【{DateTime.Now.ToString("yyyy--MM-dd HH:mm:ss")}】{log}\r\n");
+                txtResult.ScrollToEnd();
+            });
         }
 
         private void btnResource_Click(object sender, RoutedEventArgs e)

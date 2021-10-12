@@ -1,6 +1,9 @@
+using PropertyChanged;
 using PublishTools.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +24,8 @@ namespace PublishTools
     /// </summary>
     public partial class AddManager : Window
     {
-        List<Template> resultFiles = new List<Template>();
+        VMTemplate model;
+        //List<Template> resultFiles = new List<Template>();
         Dictionary<string, List<Template>> templateList;
         Action SaveConfig;
         public AddManager(Dictionary<string, List<Template>> templateList, Action SaveConfig)
@@ -29,7 +33,7 @@ namespace PublishTools
             InitializeComponent();
             this.templateList = templateList;
             this.SaveConfig = SaveConfig;
-
+            this.DataContext = model = new VMTemplate();
         }
 
         //add
@@ -39,12 +43,11 @@ namespace PublishTools
             {
                 var file = txtFile.Text.Trim();
                 var resultFile = txtResultFileName.Text.Trim();
-                resultFiles.Add(new Model.Template
+                model.Templates.Add(new Model.Template
                 {
                     FileName = file,
                     ResultFileName = resultFile
                 });
-                txtGrid.DataContext = resultFiles;
             }
         }
 
@@ -81,11 +84,11 @@ namespace PublishTools
             templateList.TryGetValue(txtName.Text.Trim(), out var data);
             if (data == null)
             {
-                templateList.Add(txtName.Text.Trim(), resultFiles);
+                templateList.Add(txtName.Text.Trim(), model.Templates.ToList());
             }
             else
             {
-                templateList[txtName.Text.Trim()] = resultFiles;
+                templateList[txtName.Text.Trim()] = model.Templates.ToList();
             }
             SaveConfig();
 
@@ -103,11 +106,48 @@ namespace PublishTools
 
         private void btnOpenFile_Click(object sender, RoutedEventArgs e)
         {
+            //OpenFileDialog dlg = new OpenFileDialog();
+            //dlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            //dlg.Multiselect = true;
+            //dlg.ShowDialog();
+
+
             OpenFileDialog open = new OpenFileDialog();
             if (open.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 txtFile.Text = open.FileName;
             }
         }
+
+        private void btnOpenDir_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Forms.FolderBrowserDialog dialog = new System.Windows.Forms.FolderBrowserDialog();
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                txtDir.Text = dialog.SelectedPath.Trim();
+            }
+        }
+
+        private void btnAddDir_Click(object sender, RoutedEventArgs e)
+        {
+            if (CheckInput())
+            {
+                var file = txtDir.Text.Trim();
+                var resultFile = txtResultDirName.Text.Trim();
+                model.Templates.Add(new Model.Template
+                {
+                    FileName = file,
+                    ISDir = true,
+                    ResultFileName = resultFile
+                });
+            }
+        }
+    }
+
+    public class VMTemplate : INotifyPropertyChanged
+    {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public ObservableCollection<Template> Templates { get; set; } = new ObservableCollection<Template>();
     }
 }
