@@ -59,6 +59,12 @@ namespace PublishTools
             {
                 return;
             }
+
+            var key = comTemplate.SelectedItem.ToString();
+
+
+            template.Remove(key);
+
             comTemplate.Items.Remove(comTemplate.SelectedItem);
 
             try
