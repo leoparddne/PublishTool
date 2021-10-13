@@ -12,6 +12,6 @@ namespace PublishTools
         public string ResourcePath { get; set; }
         public string PackCMDPath { get; set; }
         public Dictionary<string, List<Template>> Template { get; set; }
-
+        public string BeforePackCMD { get;  set; }
     }
 }

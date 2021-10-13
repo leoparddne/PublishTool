@@ -61,7 +61,6 @@ namespace PublishTools
             }
             comTemplate.Items.Remove(comTemplate.SelectedItem);
 
-            var key = comTemplate.SelectedItem.ToString();
             try
             {
                 //template.Remove(key);
@@ -77,12 +76,20 @@ namespace PublishTools
 
         private void cobTemplate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var key = comTemplate.SelectedItem.ToString();
-
-            if(template.TryGetValue(key,out var value))
+            if (comTemplate.SelectedItem != null)
             {
-                txtGrid.DataContext = value;
+                var key = comTemplate.SelectedItem.ToString();
+
+                if (template.TryGetValue(key, out var value))
+                {
+                    txtGrid.DataContext = value;
+                }
             }
+            else
+            {
+
+            }
+
         }
     }
 }

@@ -13,11 +13,12 @@ namespace PublishTools.Ex
     {
         public static string CFGFile = "tmp.cfg";
 
-        public static void SaveConfig(string ResourcePath, string PackCMDPath, Dictionary<string, List<Template>> Template)
+        public static void SaveConfig(string ResourcePath,string beforePackCMD, string PackCMDPath, Dictionary<string, List<Template>> Template)
         {
             var cfg = new TempPath
             {
                 ResourcePath = ResourcePath,
+                BeforePackCMD= beforePackCMD,
                 PackCMDPath = PackCMDPath,
                 Template = Template
             };

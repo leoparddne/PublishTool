@@ -30,6 +30,11 @@
 
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
+                    <Label Content="设置打包前需要执行的脚本" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25"/>
+                    <TextBox IsEnabled="False" x:Name="txtBeforePack" HorizontalAlignment="Left" Height="52"  TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="326"/>
+                    <Button x:Name="btnBeforeOpenFile" Content="..." HorizontalAlignment="Left" VerticalAlignment="Top" Width="63" Height="26" Click="btnBeforeOpenFile_Click"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
                     <Label Content="请选择后续需要执行的脚本" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25"/>
                     <TextBox IsEnabled="False" x:Name="txtPack" HorizontalAlignment="Left" Height="52"  TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="326"/>
                     <Button x:Name="btnOpenFile" Content="..." HorizontalAlignment="Left" VerticalAlignment="Top" Width="63" Height="26" Click="btnOpenFile_Click"/>

@@ -71,7 +71,11 @@ namespace PublishTools
         }
         private void btnPack_Click(object sender, RoutedEventArgs e)
         {
-
+            if (!string.IsNullOrEmpty(txtBeforePack.Text))
+            {
+                var beforeCMD = new CMDEx(txtResult);
+                beforeCMD.RunCmd("", txtBeforePack.Text.Trim());
+            }
 
             errorCount = 0;
             if (cobTemplate.SelectedItem == null)
@@ -139,8 +143,11 @@ namespace PublishTools
                 System.Windows.MessageBox.Show($"存在{errorCount}条错误信息,请确认,文件【{errFile}】");
             }
 
-            var cmd = new CMDEx(txtResult);
-            cmd.RunCmd("", txtPack.Text.Trim());
+            if (!string.IsNullOrEmpty(txtPack.Text))
+            {
+                var cmd = new CMDEx(txtResult);
+                cmd.RunCmd("", txtPack.Text.Trim());
+            }
         }
 
         private void CopyDir(string dir, string des)
@@ -235,7 +242,16 @@ namespace PublishTools
 
         private void SaveConfig()
         {
-            TemplateEx.SaveConfig(txtResource.Text, txtPack.Text, templateList);
+            TemplateEx.SaveConfig(txtResource.Text, txtBeforePack.Text, txtPack.Text, templateList);
+        }
+
+        private void btnBeforeOpenFile_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog file = new Microsoft.Win32.OpenFileDialog();
+            if (file.ShowDialog() == true)
+            {
+                txtBeforePack.Text = file.FileName;
+            }
         }
     }
 }
