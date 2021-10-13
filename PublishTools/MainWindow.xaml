@@ -12,20 +12,31 @@
             <MenuItem Header="添加模板" Name="addTemplate" Click="addTemplate_Click"></MenuItem>
             <MenuItem Header="删除模板" Name="delTemplate" Click="delTemplate_Click"></MenuItem>
         </Menu>
-        <Label Content="请选择配置模板" HorizontalAlignment="Left" Margin="30,38,0,0" VerticalAlignment="Top" Height="25"/>
+        <DockPanel Margin="0 20 0 0">
+            <StackPanel DockPanel.Dock="Top">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="请选择配置模板" HorizontalAlignment="Left"  VerticalAlignment="Top" Height="25"/>
 
-        <ComboBox Name="cobTemplate" HorizontalAlignment="Left" Margin="212,38,0,0" VerticalAlignment="Top" Width="328">
-            <Grid Height="100" Width="100"/>
-        </ComboBox>
-        <Label Content="请选择后续需要执行的脚本" HorizontalAlignment="Left" Margin="13,103,0,0" VerticalAlignment="Top" Height="25"/>
-        <TextBox IsEnabled="False" x:Name="txtPack" HorizontalAlignment="Left" Height="52" Margin="212,103,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="326"/>
-        <Button x:Name="btnOpenFile" Content="..." HorizontalAlignment="Left" Margin="551,102,0,0" VerticalAlignment="Top" Width="63" Height="26" Click="btnOpenFile_Click"/>
-        <Button x:Name="btnPack" Content="打包" HorizontalAlignment="Left" Margin="551,31,0,0" VerticalAlignment="Top" Width="63" Click="btnPack_Click" Height="32"/>
-        <Label Content="代码Release资源文件路径" HorizontalAlignment="Left" Margin="30,71,0,0" VerticalAlignment="Top"/>
+                    <ComboBox Name="cobTemplate" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="328" Margin="59 0 0 0">
+                        <Grid Height="100" Width="100"/>
+                    </ComboBox>
+                    <Button x:Name="btnPack" Content="打包" HorizontalAlignment="Left" VerticalAlignment="Top" Width="63" Click="btnPack_Click" Height="32"/>
 
-        <TextBox x:Name="txtResource" HorizontalAlignment="Left" IsEnabled="False" Height="23" Margin="212,71,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="326"/>
-        <Button x:Name="btnResource" Content="..." HorizontalAlignment="Left" Margin="551,71,0,0" VerticalAlignment="Top" Width="63" Height="23" Click="btnResource_Click"/>
-        <TextBox x:Name="txtResult"  HorizontalAlignment="Left" Height="296" Margin="13,181,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="631"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="代码Release资源文件路径" HorizontalAlignment="Left"  VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtResource" HorizontalAlignment="Left" IsEnabled="False" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Margin="3 0 0 0" Width="326"/>
+                    <Button x:Name="btnResource" Content="..." HorizontalAlignment="Left" VerticalAlignment="Top" Width="63" Height="23" Click="btnResource_Click"/>
 
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="请选择后续需要执行的脚本" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25"/>
+                    <TextBox IsEnabled="False" x:Name="txtPack" HorizontalAlignment="Left" Height="52"  TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="326"/>
+                    <Button x:Name="btnOpenFile" Content="..." HorizontalAlignment="Left" VerticalAlignment="Top" Width="63" Height="26" Click="btnOpenFile_Click"/>
+                </StackPanel>
+            </StackPanel>
+
+            <TextBox x:Name="txtResult" Margin="5"   TextWrapping="Wrap" Text="" VerticalAlignment="Stretch"  HorizontalAlignment="Stretch"/>
+        </DockPanel>
     </Grid>
 </Window>
